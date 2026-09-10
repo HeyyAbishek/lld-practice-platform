@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body, #root { height: 100%; }
+body {
+  background:
+    radial-gradient(1200px 600px at 90% -10%, rgba(124, 58, 237, 0.18), transparent 60%),
+    radial-gradient(800px 500px at -10% 110%, rgba(34, 211, 238, 0.10), transparent 60%),
+    #0a0a0f;
+}
+
+@layer components {
+  .card {
+    @apply bg-bg-surface border border-bg-border rounded-xl;
+  }
+  .card-hover {
+    @apply transition-all duration-200 hover:border-accent/40 hover:shadow-glow;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg
+           font-medium transition-all duration-150 disabled:opacity-50
+           disabled:cursor-not-allowed text-sm;
+  }
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-accent-glow to-accent text-white
+           hover:shadow-glow active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply btn bg-bg-elev border border-bg-border text-slate-300 hover:border-accent/40
+           hover:text-white;
+  }
+  .btn-success {
+    @apply btn bg-gradient-to-r from-emerald-500 to-teal-500 text-white
+           hover:shadow-[0_0_25px_rgba(52,211,153,0.35)] active:scale-[0.98];
+  }
+  .difficulty-easy   { @apply text-emerald-300 bg-emerald-400/10 border border-emerald-400/20; }
+  .difficulty-medium { @apply text-amber-300   bg-amber-400/10   border border-amber-400/20; }
+  .difficulty-hard   { @apply text-rose-300    bg-rose-400/10    border border-rose-400/20; }
+}
+
+/* monaco tweak — match dark surfaces */
+.monaco-editor, .monaco-editor-background, .monaco-editor .margin {
+  background: #0d0e16 !important;
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #22232f; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #2d2e3d; }
+
+/* shimmer for completion bars */
+.shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+/* fade-in for modal */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* mermaid diagram svg defaults */
+.mermaid-host svg { max-width: 100%; height: auto; }
+
+/* global smooth transitions on interactive elements */
+button, a, input, [role="button"] {
+  transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* avoid layout shift when monaco loads */
+.monaco-editor, .monaco-editor .overflow-guard {
+  outline: none !important;
+}
