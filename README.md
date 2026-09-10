@@ -1,4 +1,4 @@
-# LLD Arena
+# LLD-Practice-Platform
 
 A practice platform for **Low-Level Design** interview problems, built in Java.
 
